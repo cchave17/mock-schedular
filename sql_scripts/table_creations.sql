@@ -1,3 +1,5 @@
+DROP DATABASE IF EXISTS schedular;
+
 CREATE DATABASE schedular;
 
 use schedular;
@@ -8,6 +10,8 @@ CREATE TABLE rotations (
     Can_Leave varchar(255) NOT NULL,
     On_Call varchar(255) NOT NULL,
     On_Site varchar(255) NOT NULL,
+    Compliance int NOT NULL,
+    Selective varchar(255) DEFAULT Null,
     PG_YEAR varchar(255) DEFAULT Null,
     primary key(Rotation_Id));
 

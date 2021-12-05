@@ -1,9 +1,8 @@
 """
 Functions for interacting with MySql
 """
-
+import datetime
 import os
-import json
 import pymysql
 
 os.environ["SCHEDULAR_DB_HOST"] = "127.0.0.1"
@@ -65,11 +64,13 @@ def execute_sql(sql, parameter, select=True):
         return "problem connection with mysql"
 
 
-def get_all_rotations_from_PG(year):
-    sql = f"""SELECT * FROM rotations WHERE PG_YEAR = '{year}'"""
-    rotations = execute_sql(sql, None, True)
-    for rotation in rotations:
-        print(rotation)
+def get_all_students_from_PG():
+    # sql = f"""SELECT * FROM students WHERE PG_YEAR = '{year}'"""
+    sql = f"""SELECT * FROM students"""
+    students = execute_sql(sql, None, True)
+    for student in students:
+        full_name = student['first_name'] + ", " + student['last_name']
+        print(full_name)
 
 
-get_all_rotations_from_PG("PYG1-CORE")
+get_all_students_from_PG()
