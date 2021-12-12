@@ -1,2 +1,6 @@
+flask
 pymysql
 python-dotenv
+pandas
+openpyxl
+xlsxwriter

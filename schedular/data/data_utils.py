@@ -5,6 +5,10 @@ import datetime
 import os
 import pymysql
 
+from schedular.modules.rotation import Rotation
+from schedular.modules.student import Student
+from schedular.modules.block import Block
+
 os.environ["SCHEDULAR_DB_HOST"] = "127.0.0.1"
 os.environ["SCHEDULAR_DB_USER"] = "root"
 os.environ["SCHEDULAR_DB_PASS"] = "password"
@@ -64,13 +68,67 @@ def execute_sql(sql, parameter, select=True):
         return "problem connection with mysql"
 
 
-def get_all_students_from_PG():
-    # sql = f"""SELECT * FROM students WHERE PG_YEAR = '{year}'"""
-    sql = f"""SELECT * FROM students"""
-    students = execute_sql(sql, None, True)
-    for student in students:
-        full_name = student['first_name'] + ", " + student['last_name']
-        print(full_name)
+def get_all_students_from_pg(pg_year):
+    students_sql = f"""SELECT * FROM students WHERE PG_YEAR = '{pg_year}'"""
+    students = execute_sql(students_sql, None, True)
+
+    return students
 
 
-get_all_students_from_PG()
+def get_all_rotations_from_pg(pg_year):
+    rotations_sql = f"""SELECT * FROM rotations WHERE PG_YEAR = '{pg_year}' Order by compliance DESC"""
+    rotations = execute_sql(rotations_sql, None, True)
+    return rotations
+
+
+def get_all_blocks():
+    blocks_sql = f"""SELECT * FROM blocks"""
+    blocks = execute_sql(blocks_sql, None, True)
+
+    return blocks
+
+
+def add_total_compliance(rotations):
+    compliance = 0
+    for rotation in rotations:
+        compliance += rotation["Compliance"]
+    return compliance
+
+
+def create_schedule_student(student, pg_year):
+    """
+    :param student:
+    :param pg_year:
+    :return:
+    """
+
+    student = Student(student)
+    full_name = student.first_name + ", " + student.last_name
+    rotations = get_all_rotations_from_pg("PYG1-CORE")
+    block = 1
+    compliance = add_total_compliance(rotations)
+    stud_schedule = []
+    schedule = {full_name: stud_schedule}
+
+    while compliance > 0:
+        for rotation in rotations:
+            if rotation["Compliance"] > 0:
+                cur_rotation = {"Block": block, "Rotation": rotation["Rotation_Name"]}
+                block += 1
+                compliance -= 1
+                rotation["Compliance"] -= 1
+                stud_schedule.append(cur_rotation)
+    return schedule
+
+
+def create_pg_schedule():
+    students = get_all_students_from_pg("PYG1-CORE")
+    pg_schedule = []
+    for s in students:
+        cur_stud = create_schedule_student(s, "PYG1-CORE")
+        pg_schedule.append(cur_stud)
+
+    print(pg_schedule)
+
+create_pg_schedule()
+

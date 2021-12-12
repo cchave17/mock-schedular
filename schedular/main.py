@@ -1,15 +1,18 @@
-# This is a sample Python script.
+from flask import Flask
+from schedular.data.data_utils import get_all_blocks, get_all_students_from_pg, get_all_rotations_from_pg
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+app = Flask(__name__)
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+@app.route("/")
+def scheduler():
+    blocks = get_all_blocks()
+    print(type(blocks))
+    return "works"
+
+
+@app.route("/getSpreadsheet", methods=["GET"])
+def export_spreadsheet():
+    pass
 
