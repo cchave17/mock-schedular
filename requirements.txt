@@ -4,3 +4,9 @@ python-dotenv
 pandas
 openpyxl
 xlsxwriter
+sqlalchemy
+pytest
+pytest-cov
+pylint
+mock
+numpy
