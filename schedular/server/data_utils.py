@@ -68,6 +68,13 @@ def execute_sql(sql, parameter, select=True):
         return "problem connection with mysql"
 
 
+def get_all_students():
+    students_sql = f"""SELECT * FROM students"""
+    students = execute_sql(students_sql, None, True)
+
+    return students
+
+
 def get_all_students_from_pg(pg_year):
     students_sql = f"""SELECT * FROM students WHERE PG_YEAR = '{pg_year}'"""
     students = execute_sql(students_sql, None, True)
@@ -129,6 +136,3 @@ def create_pg_schedule():
         pg_schedule.append(cur_stud)
 
     print(pg_schedule)
-
-create_pg_schedule()
-

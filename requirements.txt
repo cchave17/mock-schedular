@@ -10,3 +10,4 @@ pytest-cov
 pylint
 mock
 numpy
+Jinja2
