@@ -5,18 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>students</title>
     <link href="https://fonts.googleapis.com/" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/style.css" >
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
 <div>
-    <form action="{{ url_for('return_home')}}" method="POST">
+    <form action="{{ url_for('add_new_student')}}" method="POST">
         <div>
             <div class="basic-info">
                 <div class="contact row">
                     <div class="col-3">
-                        <input type="text" id="f_name" name="f_name" placeholder="first" required>
-                        <input type="text" id="l_name" name="l_name" placeholder="last" required>
-                        <input type="text" id="travel_from" name="travel_from" placeholder="Traveling from">
+                        <input type="text" id="first_name" name="first_name" placeholder="first name" required>
+                        <input type="text" id="last_name" name="last_name" placeholder="last name" required>
+                        <input type="text" id="phone_number" name="phone_number" placeholder="phone number">
+                        <input type="text" id="military_branch" name="military_branch" placeholder="military_branch">
+                        <input type="text" id="dept_of_def_id" name="dept_of_def_id" placeholder="dept of defense ID">
+                        <label for="grad_year">Grad Year</label>
+                        <select id="grad_year" name="grad_year" required>
+                            <option disabled selected value>-- select an option --</option>
+                            <option value="2026">2026</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input type="submit" role="button" value="Submit">
+                        <a class="site-button">
+                            <span class="site-button-inner">Submit</span>
+                        </a>
                     </div>
                 </div>
             </div>

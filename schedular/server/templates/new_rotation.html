@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>students</title>
+    <link href="https://fonts.googleapis.com/" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+<div>
+    <form action="{{ url_for('add_new_rotation')}}" method="POST">
+        <div>
+            <div class="basic-info">
+                <div class="contact row">
+                    <div class="col-3">
+                        <input type="text" id="Rotation_Name" name="Rotation_Name" placeholder="Rotation_Name" required>
+                        <label for="Can_Leave">Can Leave</label>
+                        <select id="Can_Leave" name="Can_Leave" required>
+                            <option disabled selected value>-- select an option --</option>
+                            <option value="very unlikely">Very Unlikely</option>
+                            <option value="Unlikely">Unlikely</option>
+                            <option value="Likely">Likely</option>
+                        </select>
+                        <select id="On_Call" name="On_Call" required>
+                            <option disabled selected value>-- select an option --</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <select id="On_Site" name="On_Site" required>
+                            <option disabled selected value>-- select an option --</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <input type="number" id="Compliance" name="Compliance" placeholder="Compliance" min="0" max="9">
+                        <label for="PG_YEAR">Grad Year</label>
+                        <select id="PG_YEAR" name="PG_YEAR" required>
+                            <option disabled selected value>-- select an option --</option>
+                            <option value="PYG1-CORE">PYG1-CORE</option>
+                            <option value="PYG2-CORE">PYG2-CORE</option>
+                            <option value="PYG3-CORE">PYG3-CORE</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input type="submit" role="button" value="Submit">
+                        <a class="site-button">
+                            <span class="site-button-inner">Submit</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

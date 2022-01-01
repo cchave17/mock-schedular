@@ -48,7 +48,8 @@ def mysql_connection():
                                    password=remove_newline(os.getenv("SCHEDULAR_DB_PASS")),
                                    database=remove_newline(os.getenv("SCHEDULAR_DB_NAME")),
                                    port=3306,
-                                   cursorclass=pymysql.cursors.DictCursor)
+                                   cursorclass=pymysql.cursors.DictCursor,
+                                   client_flag=pymysql.constants.CLIENT.MULTI_STATEMENTS)
         except pymysql.err.OperationalError:
             try_count += 1
             if try_count == 3:
@@ -82,8 +83,48 @@ def get_all_students_from_pg(pg_year):
     return students
 
 
+def insert_new_student(new_student):
+    """
+    Adds new student to data base
+    :param new_student: dict of new student added from form
+    :return: the newly added student id
+    """
+    sql = f"""INSERT INTO students (first_name, last_name, phone_number, military_branch, dept_of_def_id, grad_year) 
+    VALUES(%s, %s, %s, %s, %s, %s)"""
+    values = []
+    for field in new_student:
+        if new_student[field] == '':
+            new_student[field] = None
+        values.append(new_student[field])
+
+    return execute_sql(sql, tuple(values), False)
+
+
+def insert_new_rotation(new_rotation):
+    """
+    Adds new student to data base
+    :param new_rotation: dict of new rotation added py PG_YEAR
+    :return: the newly added student id
+    """
+    sql = f"""INSERT INTO rotations (Rotation_Name, Can_Leave, On_Call, On_Site, Compliance, PG_YEAR) 
+    VALUES(%s, %s, %s, %s, %s, %s)"""
+    values = []
+    for field in new_rotation:
+        if new_rotation[field] == '':
+            new_rotation[field] = None
+        values.append(new_rotation[field])
+
+    return execute_sql(sql, tuple(values), False)
+
+
 def get_all_rotations_from_pg(pg_year):
     rotations_sql = f"""SELECT * FROM rotations WHERE PG_YEAR = '{pg_year}' Order by compliance DESC"""
+    rotations = execute_sql(rotations_sql, None, True)
+    return rotations
+
+
+def get_all_rotations():
+    rotations_sql = f"""SELECT * FROM rotations"""
     rotations = execute_sql(rotations_sql, None, True)
     return rotations
 

@@ -6,31 +6,31 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Schedular</title>
     <link href="https://fonts.googleapis.com/" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.min.css"
-          integrity="sha256-/ykJw/wDxMa0AQhHDYfuMEwVb4JHMx9h4jD4XvHqVzU=" crossorigin="anonymous"/>
 
-    <! --
     <link rel="stylesheet" href="/static/css/style.css">
-    -->
+
 </head>
 
 <body>
-<div id="container" class="contact centered">
-    <div>
-        <input type="submit" role="button" value="new-student">
-        <a class="site-button">
-            <span class="site-button-inner">New Student</span>
-        </a>
-    </div>
-    <div>
-        <button id="new-student-btn" type="button" class='btn btn-primary'>
-            <a class='btn btn-primary' href="{{ url_for('get_new_student_page') }}">
+<div class="container">
+
+    <div class='new__student__btn'>
+        <button type="button" class="buttonss">
+            <a class='btn btn-primary' href="{{ url_for('add_new_student') }}">
                 new student
             </a>
         </button>
     </div>
 
-    <div class="contact centered">
+    <div class='new__student__btn'>
+        <button type="button" class="buttonss">
+            <a class='btn btn-primary' href="{{ url_for('add_new_rotation') }}">
+                new rotation
+            </a>
+        </button>
+    </div>
+
+    <div class="student__table">
         <table class="table">
             <tr class="table__header">
                 {% for header in s_headings %}
@@ -38,6 +38,22 @@
                 {% endfor %}
             </tr>
             {% for row in sudents %}
+            <tr class="table__row">
+                {% for cell in row %}
+                <td class="table__cell">{{ cell }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="student__table">
+        <table class="table">
+            <tr class="table__header">
+                {% for header in r_headings %}
+                <th class="table__cell">{{ header }}</th>
+                {% endfor %}
+            </tr>
+            {% for row in rotations %}
             <tr class="table__row">
                 {% for cell in row %}
                 <td class="table__cell">{{ cell }}</td>
