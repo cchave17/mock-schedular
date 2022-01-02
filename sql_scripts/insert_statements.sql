@@ -11,19 +11,19 @@ INSERT INTO rotations (Rotation_Name, Can_Leave, On_Call, On_Site, Compliance, P
 
 
 INSERT INTO students (first_name, last_name, grad_year)
-	Values("Sakirat", "Akadri", "2026"),
-    ("Batra", "Prabhisimran", "2026"),
-    ("Alexa", "Bell", "2026"),
-    ("Rosina", "Darden", "2026"),
-    ("Jessica", "Gregory", "2026"),
-    ("Dustin", "Lowery", "2026"),
-    ("Michael", "McCarthy", "2026"),
-    ("Matthew", "Rusling", "2026"),
-    ("Landin", "Sorenson", "2026"),
-    ("Emily", "Diana", "2026"),
-    ("Thomas", "DiPietro", "2026"),
-    ("Candic", "Passerella", "2026"),
-    ("Kim", "Hyun Jo", "2026");
+	Values("Sakirat", "Akadri", "PYG1-CORE"),
+    ("Batra", "Prabhisimran", "PYG1-CORE"),
+    ("Alexa", "Bell", "PYG1-CORE"),
+    ("Rosina", "Darden", "PYG1-CORE"),
+    ("Jessica", "Gregory", "PYG1-CORE"),
+    ("Dustin", "Lowery", "PYG1-CORE"),
+    ("Michael", "McCarthy", "PYG1-CORE"),
+    ("Matthew", "Rusling", "PYG1-CORE"),
+    ("Landin", "Sorenson", "PYG1-CORE"),
+    ("Emily", "Diana", "PYG1-CORE"),
+    ("Thomas", "DiPietro", "PYG1-CORE"),
+    ("Candic", "Passerella", "PYG1-CORE"),
+    ("Kim", "Hyun Jo", "PYG1-CORE");
 
 
 INSERT INTO blocks (Start_Date, End_Date, Work_Days_hol, Work_Days, Days)

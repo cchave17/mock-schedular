@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>students</title>
+    <link href="https://fonts.googleapis.com/" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+<div class="container">
+    <div class='new__student__btn'>
+        <button type="button" class="buttonss">
+            <a class='btn btn-primary' href="{{ url_for('scheduler') }}">
+                HOME
+            </a>
+        </button>
+    </div>
+
+
+    <div class="student__table">
+        <table class="table">
+            {% for row in rows %}
+            <tr class="table__row">
+                {% for cell in row %}
+                <td class="table__cell">{{ cell }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
