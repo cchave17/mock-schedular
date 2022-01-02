@@ -1,8 +1,8 @@
 import pandas as pd
 
-ExcelRead = pd.read_excel("D:\Personal-Projects\mock-schedular\schedular\data\studyplanexcel.xlsx")
+ExcelRead = pd.read_excel("../../fromPython.xlsx")
 
-data = pd.DataFrame({'Fruits': ['apple', 'pears', 'bannanas', 'tomato']})
+data = pd.DataFrame({'Fruits': ['trap', 'pears', 'bannanas', 'tomato']})
 
 datatoexcel = pd.ExcelWriter("../../fromPython.xlsx", engine='xlsxwriter')
 
