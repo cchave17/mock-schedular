@@ -1,5 +1,5 @@
 from flask import Flask, render_template, url_for, request, redirect
-from schedular.server.data_utils import get_all_students, insert_new_student, get_all_rotations, \
+from schedular.server.sql_utils import get_all_students, insert_new_student, get_all_rotations, \
     insert_new_rotation, create_schedule_for_pg_year, get_block_info_rows
 
 app = Flask(__name__)
