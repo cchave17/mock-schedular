@@ -14,7 +14,7 @@
 <body>
 <div class="container">
 
-    <div class='new__student__btn'>
+    <div class='new__action__btn'>
         <button type="button" class="buttonss">
             <a class='btn btn-primary' href="{{ url_for('add_new_student') }}">
                 new student
@@ -22,7 +22,7 @@
         </button>
     </div>
 
-    <div class='new__student__btn'>
+    <div class='new__action__btn'>
         <button type="button" class="buttonss">
             <a class='btn btn-primary' href="{{ url_for('add_new_rotation') }}">
                 new rotation
@@ -30,14 +30,38 @@
         </button>
     </div>
 
-    <!-- RECENTLY ADDED, LEFT OFF HERE-->
-    <div class='new__student__btn'>
+    <div class='new__action__btn'>
+        <button type="button" class="buttonss">
+            <a class='btn btn-primary' href="{{ url_for('create_block_schedule') }}">
+                Create Block Schedule
+            </a>
+        </button>
+    </div>
+
+    <div class='new__action__btn'>
         <button type="button" class="buttonss">
             <a class='btn btn-primary' href="{{ url_for('generate_schedule') }}">
                 Generate Schedule
             </a>
         </button>
     </div>
+<!--    <form action="{{ url_for('create_block_schedule')}}" method="POST">-->
+<!--        <div class='new__action__btn'>-->
+<!--            <select id="block_year" name="block_year" required>-->
+<!--                <option disabled selected value>&#45;&#45; select an option &#45;&#45;</option>-->
+<!--                {% for b in blocks %}-->
+<!--                <option value={{b}}>{{b}}</option>-->
+<!--                {% endfor %}-->
+<!--            </select>-->
+
+<!--            <input type="submit" role="button" value={{b}} create block schedule>-->
+<!--            <a class="site-button">-->
+<!--                <span class="site-button-inner">create block schedule</span>-->
+<!--            </a>-->
+
+<!--        </div>-->
+<!--    </form>-->
+
 
     <div class="student__table">
         <table class="table">

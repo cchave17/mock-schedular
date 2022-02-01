@@ -3,20 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>students</title>
+    <title>create block</title>
     <link href="https://fonts.googleapis.com/" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
 <div>
-    <form action="{{ url_for('add_new_student')}}" method="POST">
+    <form action="{{ url_for('create_block_schedule')}}" method="POST">
         <div>
             <div class="basic-info">
                 <div class="contact row">
                     <div class="col-3">
+                        <label for="birthday">Birthday:</label>
+                        <input type="date" id="birthday" name="birthday">
+                        <br>
                         <input type="text" id="first_name" name="first_name" placeholder="first name" required>
+                        <br>
                         <input type="text" id="last_name" name="last_name" placeholder="last name" required>
+                        <br>
                         <input type="text" id="phone_number" name="phone_number" placeholder="phone number">
+                        <br>
                         <input type="text" id="military_branch" name="military_branch" placeholder="military_branch">
                         <input type="text" id="dept_of_def_id" name="dept_of_def_id" placeholder="dept of defense ID">
                         <label for="grad_year">Grad Year</label>

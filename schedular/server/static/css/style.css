@@ -37,7 +37,7 @@ table td:first-child {
 table td:last-child {
     border-right: none;
 }
-.new__student__btn {
+.new__action__btn {
     display: table;
     text-align: center;
 }

@@ -1,6 +1,6 @@
 from flask import Flask, render_template, url_for, request, redirect
 from schedular.server.sql_utils import get_all_students, insert_new_student, get_all_rotations, \
-    insert_new_rotation, create_schedule_for_pg_year, get_block_info_rows
+    insert_new_rotation, create_schedule_for_pg_year, get_block_info_rows, get_all_block_years
 
 app = Flask(__name__)
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
@@ -24,6 +24,15 @@ def scheduler():
                r["Compliance"], r["PG_YEAR"])
         rotation_rows.append(row)
     rotation_rows = tuple(rotation_rows)
+
+    # blocks_dict = get_all_block_years()
+    # print("block_dicts: ",blocks_dict)
+    # block_years = []
+    #
+    # for b in blocks_dict:
+    #     block_years.append(b.get('block_sched_year'))
+    #
+    # block_year = tuple(block_years)
 
     return render_template('index.html', s_headings=student_headings, sudents=student_rows,
                            r_headings=rotation_headings, rotations=rotation_rows)
@@ -62,3 +71,11 @@ def generate_schedule():
         rows.append(tuple(row_stud_schedule))
     rows = tuple(rows)
     return render_template('render_schedule.html', rows=rows)
+
+
+@app.route("/create_block_schedule", methods=["GET","POST"])
+def create_block_schedule():
+    if request.method == "POST":
+        print(request.form.to_dict())
+    return render_template('create_block_schedule.html')
+

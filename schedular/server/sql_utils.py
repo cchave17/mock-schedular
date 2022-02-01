@@ -4,7 +4,6 @@ Functions for interacting with MySql
 import datetime
 import os
 import pymysql
-
 from schedular.modules.rotation import Rotation
 from schedular.modules.student import Student
 from schedular.modules.block import Block
@@ -201,3 +200,11 @@ def create_schedule_for_pg_year(pg_year):
         pg_schedule.append(cur_stud)
 
     return pg_schedule
+
+def get_all_block_years():
+    sql = f"""Select distinct(block_sched_year) from blocks"""
+    all_blocks = execute_sql(sql, None, True)
+    print(all_blocks)
+    return all_blocks
+
+
