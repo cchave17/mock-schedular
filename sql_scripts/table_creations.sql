@@ -18,9 +18,9 @@ CREATE TABLE students (
 	student_id int NOT NULL auto_increment,
     first_name varchar(255) NOT NULL,
     last_name varchar(255) NOT NULL,
-    phone_number varchar(255) Default Null,
-    military_branch varchar(255) Default Null,
-    dept_of_def_id varchar(255) Default Null, 
+    phone_number varchar(255) NOT Null,
+    military_branch varchar(255) NOT Null,
+    dept_of_def_id varchar(255) NOT Null, 
     grad_year varchar(255) NOT NULL,
     
     primary key(student_id));

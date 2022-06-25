@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>create block</title>
+    <link href="https://fonts.googleapis.com/" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+<div>
+    <form action="{{ url_for('add_vacation_days',id=id)}}" method="POST">
+        <div>
+            <div class="basic-info">
+                <div class="contact row">
+                    <div class="col-3">
+                        <label for="start_vac">vacation start:</label>
+                        <input type="date" id="start_vac" name="start_vac">
+                        <br>
+                        <label for="end_vac">vacation end:</label>
+                        <input type="date" id="end_vac" name="end_vac">
+                    </div>
+                    <div>
+                        <input type="submit" role="button" value="Submit">
+                        <a class="site-button">
+                            <span class="site-button-inner">Submit</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class='new__student__btn'>
+        <button type="button" class="buttonss">
+            <a class='btn btn-primary' href="{{ url_for('scheduler') }}">
+                HOME
+            </a>
+        </button>
+    </div>
+</div>
+
+</body>
+</html>

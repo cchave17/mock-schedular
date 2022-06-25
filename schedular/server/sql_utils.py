@@ -3,6 +3,7 @@ Functions for interacting with MySql
 """
 import datetime
 import os
+from re import X
 import pymysql
 from schedular.modules.rotation import Rotation
 from schedular.modules.student import Student
@@ -70,6 +71,13 @@ def get_all_students():
     return students
 
 
+def get_student_by_id(id):
+    students_sql = f"""SELECT * FROM students Where student_id={x}"""
+    students = execute_sql(students_sql, None, True)
+
+    return students
+
+
 def get_all_students_from_pg(pg_year):
     students_sql = f"""SELECT * FROM students WHERE grad_year = '{pg_year}'"""
     students = execute_sql(students_sql, None, True)
@@ -100,8 +108,8 @@ def insert_new_rotation(new_rotation):
     :param new_rotation: dict of new rotation added py PG_YEAR
     :return: the newly added student id
     """
-    sql = f"""INSERT INTO rotations (Rotation_Name, Can_Leave, On_Call, On_Site, Compliance, PG_YEAR) 
-    VALUES(%s, %s, %s, %s, %s, %s)"""
+    sql = f"""INSERT INTO rotations (Rotation_Name, Can_Leave, On_Call, On_Site, Capacity_Min, Capacity_Max, Compliance, PG_YEAR) 
+    VALUES(%s, %s, %s, %s, %s, %s, %s, %s)"""
     values = []
     for field in new_rotation:
         if new_rotation[field] == '':
@@ -186,7 +194,6 @@ def create_schedule_student(student):
                 stud_schedule.append(cur_rotation)
     return schedule
 
-
 def create_schedule_for_pg_year(pg_year):
     """
     Creates a rotations schedule for all students in a same PG_Year
@@ -196,15 +203,45 @@ def create_schedule_for_pg_year(pg_year):
     students = get_all_students_from_pg(pg_year)
     pg_schedule = []
     for s in students:
-        cur_stud = create_schedule_student(s)
-        pg_schedule.append(cur_stud)
+        student = Student(s).get_student()
+        full_name = student['first_name'] + ", " + student['last_name']
+        rotations = get_all_rotations_from_pg(student["grad_year"])
+        block = 1
+        compliance = add_total_compliance(rotations)
+        stud_schedule = []
+        schedule = {full_name: stud_schedule}
+
+        while compliance > 0:
+            for rotation in rotations:
+                if rotation["Compliance"] > 0:
+                    cur_rotation = {"Block": block, "Rotation": rotation["Rotation_Name"]}
+                    block += 1
+                    compliance -= 1
+                    rotation["Compliance"] -= 1
+                    stud_schedule.append(cur_rotation)
+        pg_schedule.append(schedule)
 
     return pg_schedule
+
+
+# def create_schedule_for_pg_year(pg_year):
+#     """
+#     Creates a rotations schedule for all students in a same PG_Year
+#     :param pg_year: Year that rotation schedule needs creation for
+#     :return: List of student dicts ie [{student:[rotations]},....]
+#     """
+#     students = get_all_students_from_pg(pg_year)
+#     pg_schedule = []
+#     print(type(students))
+#     for s in students:
+#         cur_stud = create_schedule_student(s)
+#         pg_schedule.append(cur_stud)
+#
+#     return pg_schedule
+
 
 def get_all_block_years():
     sql = f"""Select distinct(block_sched_year) from blocks"""
     all_blocks = execute_sql(sql, None, True)
     print(all_blocks)
     return all_blocks
-
-

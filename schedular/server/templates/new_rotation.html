@@ -22,23 +22,30 @@
                             <option value="Unlikely">Unlikely</option>
                             <option value="Likely">Likely</option>
                         </select>
+                        <label for="On_Call">on Call</label>
                         <select id="On_Call" name="On_Call" required>
                             <option disabled selected value>-- select an option --</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                         </select>
+                        <label for="On_Site">on Site</label>
                         <select id="On_Site" name="On_Site" required>
                             <option disabled selected value>-- select an option --</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                         </select>
+                        <label for="Capacity_Min">Capacity Min</label>
+                        <input type="number" id="Capacity_Min" name="Capacity_Min" placeholder="Capacity_Min" min="0" max="9">
+                        <label for="Capacity_Max">Capacity Max</label>
+                        <input type="number" id="Capacity_Max" name="Capacity_Max" placeholder="Capacity_Max" min="0" max="9">
+                        <label for="Compliance">Compliance</label>
                         <input type="number" id="Compliance" name="Compliance" placeholder="Compliance" min="0" max="9">
                         <label for="PG_YEAR">Grad Year</label>
                         <select id="PG_YEAR" name="PG_YEAR" required>
                             <option disabled selected value>-- select an option --</option>
                             <option value="PYG1-CORE">PYG1-CORE</option>
                             <option value="PYG2-CORE">PYG2-CORE</option>
-                            <option value="PYG3-CORE">PYG3-CORE</option>
+                            <option value="PYG4-CORE">PYG4-CORE</option>
                         </select>
                     </div>
                     <div>

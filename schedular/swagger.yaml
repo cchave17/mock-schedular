@@ -1,0 +1,109 @@
+openapi: 3.0.0
+info:
+  contact:
+    name: API Owner
+    email: cycvez@gmail.com
+  title: SEaaS API
+  description: Mock Schedular
+  version: 1.0.0
+paths:
+  /addNewStudent:
+    description: Post Request to add
+    post:
+      summary: add new student
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  example: John
+                last_name:
+                  type: string
+                  example: Doe
+                phone_num:
+                  type: string
+                  example: '6123334444'
+                email:
+                  type: string
+                  example: user@email.com
+                military_branch:
+                  type: string
+                  example: Name
+                dept_of_def_id:
+                  type: string
+                  example: "192-322-2343"
+                grad_year:
+                  type: string
+                  example: "2026 *drop_down*"
+      responses:
+        '200':
+          description: "student has been added "
+
+  # /addNewBlock:
+  #   description: Post Request to add block
+  #   post:
+  #     summary: add new block
+  #     requestBody:
+  #       content:
+  #         application/json:
+  #           schema:
+  #             type: object
+  #             properties:
+  #               first_name:
+  #                 type: string
+  #                 example: John
+  #               last_name:
+  #                 type: string
+  #                 example: Doe
+  #               phone_num:
+  #                 type: string
+  #                 example: '6123334444'
+  #               email:
+  #                 type: string
+  #                 example: user@email.com
+  #               military_branch:
+  #                 type: string
+  #                 example: Name
+  #               dept_of_def_id:
+  #                 type: string
+  #                 example: "192-322-2343"
+  #               grad_year:
+  #                 type: string
+  #                 example: "PYG1-CORE"
+  #     responses:
+  #       '200':
+  #         description: "block has been added"
+
+
+  /addNewRotation:
+    description: Post Request to add
+    post:
+      summary: add new rotation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Rotation_Name:
+                  type: string
+                  example: "Medicine"
+                can_leave:
+                  type: string
+                  example: "Very Unlikely *drop_down*"
+                On_Call:
+                  type: string
+                  example: "N/Y *drop_down*"
+                On_Site:
+                  type: string
+                  example: "N/Y *drop_down"
+                Compliance:
+                  type: string
+                  example: "3"
+
+      responses:
+        '200':
+          description: "block has been added"

@@ -45,22 +45,6 @@
             </a>
         </button>
     </div>
-<!--    <form action="{{ url_for('create_block_schedule')}}" method="POST">-->
-<!--        <div class='new__action__btn'>-->
-<!--            <select id="block_year" name="block_year" required>-->
-<!--                <option disabled selected value>&#45;&#45; select an option &#45;&#45;</option>-->
-<!--                {% for b in blocks %}-->
-<!--                <option value={{b}}>{{b}}</option>-->
-<!--                {% endfor %}-->
-<!--            </select>-->
-
-<!--            <input type="submit" role="button" value={{b}} create block schedule>-->
-<!--            <a class="site-button">-->
-<!--                <span class="site-button-inner">create block schedule</span>-->
-<!--            </a>-->
-
-<!--        </div>-->
-<!--    </form>-->
 
 
     <div class="student__table">
@@ -69,12 +53,27 @@
                 {% for header in s_headings %}
                 <th class="table__cell">{{ header }}</th>
                 {% endfor %}
+                <th class="table__cell">Edit</th>
             </tr>
-            {% for row in sudents %}
+            {% for s in sudents %}
             <tr class="table__row">
-                {% for cell in row %}
-                <td class="table__cell">{{ cell }}</td>
-                {% endfor %}
+                <td class="table__cell">{{s.first_name}}</td>
+                <td class="table__cell">{{s.last_name}}</td>
+                <td class="table__cell">{{s.grad_year}}</td>
+                <td>
+                    <button type="button" class="buttonss">
+                        <a class='btn btn-primary' href="{{ url_for('generate_schedule') }}">
+                            Edit
+                        </a>
+                    </button>
+                </td>
+                <td>
+                    <button type="button" class="buttonss">
+                        <a class='btn btn-primary' href="{{ url_for('add_vacation_days', id=s.student_id) }}">
+                            Vacation Days
+                        </a>
+                    </button>
+                </td>
             </tr>
             {% endfor %}
         </table>
